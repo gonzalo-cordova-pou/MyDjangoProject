@@ -1,29 +1,26 @@
-{% extends 'main.html' %} {% block content %} {% if number > 10 %}
-<p>Number is greater than 10</p>
-{% elif number == 10 %}
-<p>Number is exactly 10</p>
-{% else %}
-<p>Number is lower than 10</p>
-{% endif %}
-<hr />
+{% extends 'main.html' %}
+
+{% block content %}
 
 <h1>Projects</h1>
 
 <table>
     <tr>
-        <th>ID</th>
         <th>Projects</th>
         <th>Ratio</th>
         <th>Votes</th>
         <th>Date</th>
+        <th></th>
     </tr>
     {% for p in projects %}
         <tr>
-            <td>{{p.id}}</td>
-            <td><a href="{% url 'project' p.id %}">{{p.title}}</a></td>
+            <td>{{p.title}}</td>
             <td>{{p.vote_ratio}}%</td>
             <td>{{p.vote_total}}</td>
             <td>{{p.created}}</td>
+            <td><a href="{% url 'project' p.id %}"> View </a></td>
+            <td><a href="{% url 'update-project' p.id %}"> Edit </a></td>
+            <td><a href="{% url 'delete-project' p.id %}"> Delete </a></td>
     {% endfor %}
 </table>
 
